@@ -1,6 +1,8 @@
+# coding: utf-8
+
 class PostsController < ApplicationController
 	def index
-		@posts = Post.all;
+		@posts = Post.all(:order => "created_at DESC")
 	end
 
 	def show
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		if @post.save
-			redirect_to posts_path
+			redirect_to posts_path, notice:  '作成されました!'
 		else
 			render action: 'new'
 		end
