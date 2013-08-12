@@ -22,6 +22,19 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def edit
+		@post = Post.find(params[:id]);
+	end
+
+        def update
+		@post = Post.find(params[:id]);
+		if @post.update_attributes(post_params)
+			redirect_to posts_path, notice:  '更新されました!'
+		else
+			render action: 'edit'
+		end
+        end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
