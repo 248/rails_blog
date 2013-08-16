@@ -2,11 +2,12 @@
 
 class PostsController < ApplicationController
 	def index
-		@posts = Post.all(:order => "created_at DESC")
+		@posts = Post.order("created_at DESC")
 	end
 
 	def show
-		@post = Post.find(params[:id]);
+		@post = Post.find(params[:id])
+		@comment = Post.find(params[:id]).comments.build
 	end
 
 	def new
