@@ -2,8 +2,14 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = Post.find(params[:post_id]).comments.create(comment_params)
-    redirect_to post_path(@post)
+    #@comment = Post.find(params[:post_id]).comments.create(comment_params)
+    @comment = Post.find(params[:post_id]).comments.new(comment_params)
+    if @comment.save
+      redirect_to post_path(@post)
+    else
+      render :template => "posts/show"
+    end
+
   end
 
   private
