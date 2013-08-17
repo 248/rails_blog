@@ -12,6 +12,15 @@ class CommentsController < ApplicationController
 
   end
 
+  def destroy
+    @comment = Comment.find(params[:id]);
+    @comment.destroy
+    render json: { post: @comment }
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
